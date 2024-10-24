@@ -3,6 +3,7 @@ import FileInput from './FileInput'
 import InputField from './common/InputField'
 import InputGroup from './common/InputGroup'
 import DescriptioGroup from './common/DescriptionGroup'
+import ItemTable from './Tables/ItemTable'
 
 function Landing() {
     return (
@@ -25,6 +26,10 @@ function Landing() {
                         <DescriptioGroup placeholder='Who is this invoice from?' inputValue='Invoice from' />
                         <DescriptioGroup placeholder='Who is this invoice to?' inputValue='Invoice to' />
                     </div>
+                </div>
+
+                <div className='mt-6'>
+                    <ItemTable />
                 </div>
             </div>
         </div>
