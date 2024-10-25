@@ -10,8 +10,8 @@ type InputProps = {
 function DescriptionField({ className = '', placeholder = '', inputClass = '', value = '' }: InputProps) {
     return (
         <>
-            <div className={`px-2 py-1 h-[110px] ${className}`}>
-                <textarea className={`w-full h-full  ${inputClass}`} value={value} placeholder={placeholder} />
+            <div className={`px-2 pt-1 min-h-[90px] ${className}`}>
+                <textarea className={`w-full min-h-[90px]  ${inputClass}`} value={value} placeholder={placeholder} />
             </div>
         </>
     )

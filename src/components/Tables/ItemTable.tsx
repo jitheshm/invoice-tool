@@ -20,13 +20,13 @@ function ItemTable() {
                     <tr>
                         <td className="px-2 py-1  text-center">1</td>
                         <td className="px-2 py-1  truncate">
-                            <InputField className='border-[#ffca58] border-solid border-[1px]' type='text' placeholder='Description' />
+                            <InputField className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex' type='text' placeholder='Description' inputClass='h-full' />
                         </td>
                         <td className="px-2 py-1  truncate">
-                            <InputField className='border-[#ffca58] border-solid border-[1px]' type='text' placeholder='Quantity' />
+                            <InputField className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex' type='text' placeholder='Quantity' />
                         </td>
                         <td className="px-2 py-1  truncate">
-                            <InputField className='border-[#ffca58] border-solid border-[1px]' type='text' placeholder='Rate' />
+                            <InputField className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex' type='text' placeholder='Rate' />
                         </td>
                         <td className="px-2 py-1  truncate">
                         </td>
@@ -36,7 +36,7 @@ function ItemTable() {
                 </tbody>
             </table>
             <div className='mt-4'>
-                <Button className='w-28 h-10' icon={<IoIosAdd />} name='Add Item'/>
+                <Button className='w-24 h-8 text-sm' icon={<IoIosAdd />} name='Add Item'/>
             </div>
         </div>
     )

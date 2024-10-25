@@ -26,9 +26,11 @@ export default function RootLayout({
       <body
         className={`${roboto.variable}  antialiased`}
       >
-        <Navbar />
+        <div className="md:px-6 lg:px-16">
+          <Navbar />
 
-        {children}
+          {children}
+        </div>
       </body>
     </html>
   );

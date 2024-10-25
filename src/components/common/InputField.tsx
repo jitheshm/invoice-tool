@@ -11,7 +11,7 @@ type InputProps = {
 function InputField({ className, type, inputClass, value = '', placeholder }: InputProps) {
     return (
         <>
-            <div className={`px-2 py-1 ${className} ${type === 'date' ? '!w-[18%] sm:!w-full' : ''}`}>
+            <div className={`px-2 py-1 ${className} ${type === 'date' ? '!w-[18%]' : ''}`}>
                 <input
                     type={type}
                     className={`w-full  ${inputClass}`}
