@@ -1,35 +1,10 @@
+import { InvoiceState, Item } from "@/types/InvoiceTypes";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Field {
-    label: string;
-    value: string | number;
-}
 
-interface Item {
-    item?: string;
-    quantity?: number;
-    rate?: number;
-
-}
-
-interface InvoiceState {
-    invoiceId: Field;
-    invoiceDate: Field;
-    dueDate: Field;
-    from: Field;
-    to: Field;
-    items: Item[];
-    terms: Field;
-    note: Field;
-    subtotal: Field;
-    discount: Field;
-    shipping: Field;
-    tax: Field;
-    paid: Field;
-}
 
 const initialState: InvoiceState = {
-    invoiceId: { label: 'Invoice ID', value: 'INVOICE' },
+    invoiceId: { label: 'INVOICE', value: '' },
     invoiceDate: { label: 'Invoice Date', value: '' },
     dueDate: { label: 'Due Date', value: '' },
     from: { label: 'From', value: '' },

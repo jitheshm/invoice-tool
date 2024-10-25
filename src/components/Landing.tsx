@@ -19,7 +19,7 @@ function Landing() {
                         <InvoiceDetails />
                     </div>
                 </div>
-                <div className='mt-14 flex flex-wrap'>
+                {/* <div className='mt-14 flex flex-wrap'>
                     <InvoiceDescription />
                 </div>
                 <div className='mt-6'>
@@ -31,7 +31,7 @@ function Landing() {
                 </div>
                 <div className='mt-4'>
                     <Actions />
-                </div>
+                </div> */}
             </div>
         </div>
     )
