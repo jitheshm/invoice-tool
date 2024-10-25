@@ -19,10 +19,10 @@ function Landing() {
                         <InvoiceDetails />
                     </div>
                 </div>
-                {/* <div className='mt-14 flex flex-wrap'>
+                <div className='mt-14 flex flex-wrap'>
                     <InvoiceDescription />
                 </div>
-                <div className='mt-6'>
+                {/* <div className='mt-6'>
                     <ItemTable />
                 </div>
                 <div className='flex flex-wrap'>
