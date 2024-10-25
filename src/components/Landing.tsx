@@ -46,16 +46,16 @@ function Landing() {
                     </div>
 
                     <div className='ps-16 md:ps-40 mt-4 w-full md:w-1/2'>
-                        <InputGroup type='text' FclassName='w-[120px]' />
+                        <InputGroup type='text' FclassName='!w-[120px]' />
 
-                        <div className='flex'>
-                            <Button name='Discounts' className='text-md px-2 p-2 w-fit bg-transparent text-[#e9605a] hover:bg-transparent hover:cursor-pointer hover:underline ' icon={<VscDiffAdded />} iconClass='text-[#AAAAAA] mx-2' />
-                            <Button name='Shipping' className='text-md px-2 p-2 w-fit bg-transparent text-[#e9605a] hover:bg-transparent hover:cursor-pointer hover:underline ' icon={<VscDiffAdded />} iconClass='text-[#AAAAAA] mx-2' />
+                        <div className='flex flex-wrap'>
+                            <Button name='Discounts' className='text-md px-2 p-2 w-fit !bg-transparent !text-[#e9605a] hover:bg-transparent hover:cursor-pointer hover:underline ' icon={<VscDiffAdded />} iconClass='text-[#AAAAAA] mx-2' />
+                            <Button name='Shipping' className='text-md px-2 p-2 w-fit !bg-transparent !text-[#e9605a] hover:bg-transparent hover:cursor-pointer hover:underline ' icon={<VscDiffAdded />} iconClass='text-[#AAAAAA] mx-2' />
                         </div>
 
 
                         <div className='w-full flex'>
-                            <InputGroup type='text' FclassName='w-[120px]' LclassName='rounded-e-none' />
+                            <InputGroup type='text' FclassName='!w-[120px]' LclassName='rounded-e-none' />
                             <div className='w-10 mt-2 border-[#ffca58] border-solid border-[1px] border-s-[0.5px] rounded-e-full flex justify-center items-center'>
                                 <p className='text-center'>%</p>
                             </div>
@@ -66,10 +66,10 @@ function Landing() {
                         </div>
 
                         <div className='mt-4'>
-                            <InputGroup type='text' FclassName='w-[120px]' />
+                            <InputGroup type='text' FclassName='!w-[120px]' />
                         </div>
                         <div className='mt-4'>
-                            <InputGroup type='text' FclassName='w-[120px]' />
+                            <InputGroup type='text' FclassName='!w-[120px]' />
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@ function Landing() {
                     {/* buttons goes here */}
                     <div className='flex flex-wrap w-1/2 mx-auto p-2 justify-center items-center gap-1'>
                         <Button name='Download PDF' className='text-xl px-2 p-2 w-fit rounded-md' />
-                        <Button name='Clear' className='text-md px-3 p-2 w-fit rounded-md bg-[#F8F9FA] text-black' />
+                        <Button name='Clear' className='text-md px-3 p-2 w-fit !rounded-md !bg-[#F8F9FA] !text-black' />
                     </div>
                 </div>
             </div>
