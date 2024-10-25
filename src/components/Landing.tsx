@@ -22,16 +22,16 @@ function Landing() {
                 <div className='mt-14 flex flex-wrap'>
                     <InvoiceDescription />
                 </div>
-                {/* <div className='mt-6'>
+                <div className='mt-6'>
                     <ItemTable />
                 </div>
-                <div className='flex flex-wrap'>
+                {/* <div className='flex flex-wrap'>
                     <TermsAndFooter />
                     <DiscountAndShipping />
-                </div>
+                </div> */}
                 <div className='mt-4'>
                     <Actions />
-                </div> */}
+                </div>
             </div>
         </div>
     )

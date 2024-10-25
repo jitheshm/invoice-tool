@@ -37,7 +37,7 @@ const invoiceSlice = createSlice({
         addItem: (state) => {
             state.items.push({});
         },
-        updateItem: (state, action: PayloadAction<{ index: number; item: Partial<Item> }>) => {
+        updateItem: (state, action: PayloadAction<{ index: number; item: Partial<AppDispatch> }>) => {
             const { index, item } = action.payload;
             state.items[index] = { ...state.items[index], ...item };
         },

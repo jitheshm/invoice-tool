@@ -5,7 +5,7 @@ type InputProps = {
     className?: string,
     type: string,
     inputClass?: string
-    value: string
+    value: string|number
     placeholder?: string
     onChange: OnChange
 }

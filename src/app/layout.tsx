@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${roboto.variable}  antialiased`}
       >
         <StoreProvider>
-          <div className="md:px-6 lg:px-16">
+          <div className="md:w-11/12  mx-auto">
             <Navbar />
 
             {children}

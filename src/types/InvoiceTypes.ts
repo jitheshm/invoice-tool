@@ -4,9 +4,9 @@ export interface Field {
 }
 
 export interface Item {
-    item?: string;
-    quantity?: number;
-    rate?: number;
+    item: string;
+    quantity: number;
+    rate: number;
 
 }
 

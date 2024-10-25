@@ -1,9 +1,26 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import InputField from '../common/InputField'
 import Button from '../common/Button'
 import { IoIosAdd } from "react-icons/io";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/lib/store';
+import { updateItemData } from '@/lib/features/invoice/invoiceUtils';
+import { addItem } from '@/lib/features/invoice/invoiceSlice';
 
 function ItemTable() {
+
+    const { items } = useSelector((state: RootState) => state.invoice);
+    const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+    }, []);
+
+    if (!loading) return null;
+
     return (
         <div className="w-full">
             <table className="w-full table-fixed ">
@@ -17,26 +34,53 @@ function ItemTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="px-2 py-1  text-center">1</td>
-                        <td className="px-2 py-1  truncate">
-                            <InputField className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex' type='text' placeholder='Description' inputClass='h-full' />
-                        </td>
-                        <td className="px-2 py-1  truncate">
-                            <InputField className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex' type='text' placeholder='Quantity' />
-                        </td>
-                        <td className="px-2 py-1  truncate">
-                            <InputField className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex' type='text' placeholder='Rate' />
-                        </td>
-                        <td className="px-2 py-1  truncate">
-                        </td>
+                    {
+                        items.map((ele, index) => {
+                            return (
+                                <tr key={index + ele.item}>
+                                    <td className="px-2 py-1  text-center">{index + 1}</td>
+                                    <td className="px-2 py-1  truncate">
+                                        <InputField
+                                            className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex'
+                                            type='text'
+                                            placeholder='Description'
+                                            inputClass='h-full'
+                                            value={ele.item}
+                                            onChange={(e) => updateItemData(dispatch, index, { item: e.target.value })}
+                                        />
+                                    </td>
+                                    <td className="px-2 py-1  truncate">
+                                        <InputField
+                                            className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex'
+                                            type='number'
+                                            placeholder='Quantity'
+                                            value={ele.quantity}
+                                            onChange={(e) => updateItemData(dispatch, index, { quantity: e.target.value ? parseFloat(e.target.value) : undefined })}
+                                        />
+                                    </td>
+                                    <td className="px-2 py-1  truncate">
+                                        <InputField
+                                            className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex'
+                                            type='text'
+                                            placeholder='Rate'
+                                            value={ele.rate}
+                                            onChange={(e) => updateItemData(dispatch, index, { rate: e.target.value ? parseFloat(e.target.value) : undefined })}
+                                        />
+                                    </td>
+                                    <td className="px-2 py-1  truncate text-end">
+                                        {ele.quantity && ele.rate ? ele.quantity * ele.rate : 0.00}
+                                    </td>
 
-                    </tr>
+                                </tr>
+                            )
+                        })
+                    }
+
 
                 </tbody>
             </table>
             <div className='mt-4'>
-                <Button className='w-24 h-8 text-sm' icon={<IoIosAdd />} name='Add Item'/>
+                <Button onClick={() => dispatch(addItem())} className='w-24 h-8 text-sm' icon={<IoIosAdd />} name='Add Item' />
             </div>
         </div>
     )
