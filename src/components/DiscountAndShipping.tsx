@@ -53,7 +53,7 @@ function DiscountAndShipping() {
                                 fValue={discount.label}
                                 fOnChange={(e) => updateField(dispatch, "discount", "label", e.target.value)}
                                 lValue={discount.value!}
-                                lOnChange={(e) => updateField(dispatch, "discount", "value", parseFloat(e.target.value))}
+                                lOnChange={(e) => updateField(dispatch, "discount", "value", (isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value)))}
                             />
                             <div className='w-10 mt-2 border-[#ffca58] border-solid border-[1px] border-s-[0.5px] rounded-e-full flex justify-center items-center'>
                                 <Button onClick={() => updateField(dispatch, "discount", "value", '')} className='text-md px-2 p-2 w-fit !bg-transparent !text-[#e9605a] hover:bg-transparent hover:cursor-pointer ' icon={<CiSquareMinus />} iconClass='text-[#AAAAAA] mx-2' />
@@ -72,7 +72,7 @@ function DiscountAndShipping() {
                                 fValue={shipping.label}
                                 fOnChange={(e) => updateField(dispatch, "shipping", "label", e.target.value)}
                                 lValue={shipping.value!}
-                                lOnChange={(e) => updateField(dispatch, "shipping", "value", parseFloat(e.target.value))}
+                                lOnChange={(e) => updateField(dispatch, "shipping", "value", (isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value)))}
                             />
                             <div className='w-10 mt-2 border-[#ffca58] border-solid border-[1px] border-s-[0.5px] rounded-e-full flex justify-center items-center'>
                                 <Button onClick={() => updateField(dispatch, "shipping", "value", '')} className='text-md px-2 p-2 w-fit !bg-transparent !text-[#e9605a] hover:bg-transparent hover:cursor-pointer hover:underline ' icon={<CiSquareMinus />} iconClass='text-[#AAAAAA] mx-2' />
