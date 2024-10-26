@@ -25,10 +25,10 @@ function Landing() {
                 <div className='mt-6'>
                     <ItemTable />
                 </div>
-                {/* <div className='flex flex-wrap'>
+                <div className='flex flex-wrap'>
                     <TermsAndFooter />
-                    <DiscountAndShipping />
-                </div> */}
+                    {/* <DiscountAndShipping /> */}
+                </div>
                 <div className='mt-4'>
                     <Actions />
                 </div>
