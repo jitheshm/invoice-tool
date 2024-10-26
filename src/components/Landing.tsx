@@ -27,7 +27,7 @@ function Landing() {
                 </div>
                 <div className='flex flex-wrap'>
                     <TermsAndFooter />
-                    {/* <DiscountAndShipping /> */}
+                    <DiscountAndShipping />
                 </div>
                 <div className='mt-4'>
                     <Actions />

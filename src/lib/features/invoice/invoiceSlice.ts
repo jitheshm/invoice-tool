@@ -12,11 +12,12 @@ const initialState: InvoiceState = {
     items: [],
     terms: { label: 'Terms', value: '' },
     note: { label: 'Note', value: '' },
-    subtotal: { label: 'Subtotal', value: 0 },
-    discount: { label: 'Discount', value: 0 },
-    shipping: { label: 'Shipping', value: 0 },
+    subtotal: { label: 'Subtotal' },
+    discount: { label: 'Discount', value: '' },
+    shipping: { label: 'Shipping', value: '' },
     tax: { label: 'Tax', value: 0 },
-    paid: { label: 'Paid', value: 0 }
+    paid: { label: 'Paid', value: 0 },
+    balance:{label:'Balance Due'}
 };
 
 const invoiceSlice = createSlice({
@@ -37,7 +38,7 @@ const invoiceSlice = createSlice({
         addItem: (state) => {
             state.items.push({});
         },
-        updateItem: (state, action: PayloadAction<{ index: number; item: Partial<AppDispatch> }>) => {
+        updateItem: (state, action: PayloadAction<{ index: number; item: Partial<Item> }>) => {
             const { index, item } = action.payload;
             state.items[index] = { ...state.items[index], ...item };
         },

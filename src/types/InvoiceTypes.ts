@@ -1,12 +1,12 @@
 export interface Field {
     label: string;
-    value: string | number;
+    value?: string | number;
 }
 
 export interface Item {
-    item: string;
-    quantity: number;
-    rate: number;
+    item?: string;
+    quantity?: number;
+    rate?: number;
 
 }
 
@@ -24,4 +24,5 @@ export interface InvoiceState {
     shipping: Field;
     tax: Field;
     paid: Field;
+    balance:Field
 }

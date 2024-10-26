@@ -4,7 +4,7 @@ import React from 'react'
 type ButtonProps = {
     className?: string
     icon?: React.ReactElement
-    name: string
+    name?: string
     iconClass?: string
     onClick: OnClick
 }

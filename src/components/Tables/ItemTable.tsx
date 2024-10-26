@@ -34,7 +34,7 @@ function ItemTable() {
                 </thead>
                 <tbody className='group'>
                     {items.map((ele, index) => (
-                        <TableRow key={ele.item + index} index={index} ele={ele} dispatch={dispatch} />
+                        <TableRow key={ele.item??'' + index} index={index} ele={ele} dispatch={dispatch} />
                     ))}
                 </tbody>
             </table>

@@ -2,7 +2,7 @@ import { InvoiceState, Item } from '@/types/InvoiceTypes';
 import { removeItem, setInvoiceField, updateItem } from './invoiceSlice';
 import { AppDispatch } from '@/lib/store';
 
-export const updateField = (dispatch: AppDispatch, field: keyof InvoiceState, key: 'label' | 'value', input: string) => {
+export const updateField = (dispatch: AppDispatch, field: keyof InvoiceState, key: 'label' | 'value', input: string|number) => {
     dispatch(setInvoiceField({ field, [key]: input }));
 };
 

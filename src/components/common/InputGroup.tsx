@@ -8,9 +8,9 @@ type InputProp = {
   fClassName?: string
   lClassName?: string
   fOnChange: OnChange
-  lOnChange: OnChange
+  lOnChange?: OnChange
   fValue: string
-  lValue: string
+  lValue: string | number
 
 }
 
