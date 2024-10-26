@@ -5,12 +5,13 @@ type InputProps = {
     className?: string,
     type: string,
     inputClass?: string
-    value: string|number
+    value: string | number
     placeholder?: string
-    onChange: OnChange
+    onChange?: OnChange
+    onBlur?: OnChange
 }
 
-function InputField({ className, type, inputClass, value, placeholder, onChange }: InputProps) {
+function InputField({ className, type, inputClass, value, placeholder, onChange, onBlur }: InputProps) {
     return (
         <>
             <div className={`px-2 py-1 ${className} ${type === 'date' ? '!w-[18%]' : ''}`}>
@@ -20,6 +21,7 @@ function InputField({ className, type, inputClass, value, placeholder, onChange 
                     value={value}
                     placeholder={placeholder}
                     onChange={onChange}
+                    onBlur={onBlur}
                 />
             </div>
         </>

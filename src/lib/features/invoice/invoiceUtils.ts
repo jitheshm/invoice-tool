@@ -1,5 +1,5 @@
 import { InvoiceState, Item } from '@/types/InvoiceTypes';
-import { setInvoiceField, updateItem } from './invoiceSlice';
+import { removeItem, setInvoiceField, updateItem } from './invoiceSlice';
 import { AppDispatch } from '@/lib/store';
 
 export const updateField = (dispatch: AppDispatch, field: keyof InvoiceState, key: 'label' | 'value', input: string) => {
@@ -8,4 +8,8 @@ export const updateField = (dispatch: AppDispatch, field: keyof InvoiceState, ke
 
 export const updateItemData = (dispatch: AppDispatch, index: number, item: Partial<Item>) => {
     dispatch(updateItem({ index, item }))
+}
+
+export const deleteItem = (dispatch: AppDispatch, index: number) => {
+    dispatch(removeItem(index))
 }
