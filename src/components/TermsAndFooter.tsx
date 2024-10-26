@@ -4,16 +4,20 @@ import DescriptioGroup from './common/DescriptionGroup'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
 import { updateField } from '@/lib/features/invoice/invoiceUtils';
+import { IError } from '@/lib/features/errors/errorSlice';
 
 function TermsAndFooter() {
 
     const { terms, note } = useSelector((state: RootState) => state.invoice);
+    const error = useSelector((state: RootState) => state.errors);
+
     const dispatch = useDispatch();
 
     return (
         <>
             <div className='md:w-1/2 w-full'>
                 <DescriptioGroup
+                    error={error.errors.terms as IError | undefined}
                     placeholder='Terms and conditions - late fees, payment methods, delivery schedule'
                     labelValue={terms.label}
                     textValue={terms.value as string}
@@ -21,6 +25,7 @@ function TermsAndFooter() {
                     textOnChange={(e) => updateField(dispatch, "terms", "value", e.target.value)}
                 />
                 <DescriptioGroup
+                    error={error.errors.note as IError | undefined}
                     placeholder='Thank you for your business'
                     labelValue={note.label}
                     textValue={note.value as string}

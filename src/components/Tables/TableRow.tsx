@@ -42,7 +42,7 @@ const TableRow = memo(({ index, ele, dispatch }: PropTypes) => {
             <td className="px-2 py-1 truncate">
                 <InputField
                     className='border-[#ffca58] border-solid border-[1px] rounded-sm !py-0 h-[25px] flex'
-                    type='text'
+                    type='number'
                     placeholder='Rate'
                     value={ele.rate}
                     onChange={(e) => updateItemData(dispatch, index, { rate: e.target.value ? parseFloat(e.target.value) : undefined })}
