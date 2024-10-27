@@ -2,11 +2,20 @@ import { z } from 'zod';
 import { InvoiceState } from '@/types/InvoiceTypes';
 import { IError } from '../features/errors/errorSlice';
 
-const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
 const FieldSchema = z.object({
     label: z.string().nonempty('Label is required'),
     value: z.string().nonempty('Value is required'),
+});
+
+const FieldNumberSchema = z.object({
+    label: z.string().nonempty('Label is required'),
+    value: z.number().nonnegative('Rate cannot be negative'),
+});
+
+const WithoutValueSchema = z.object({
+    label: z.string().nonempty('Label is required'),
 });
 
 const DateFieldSchema = z.object({
@@ -32,12 +41,12 @@ const InvoiceSchema = z.object({
     items: z.array(ItemSchema).min(1, 'At least one item is required'),
     terms: FieldSchema,
     note: FieldSchema,
-    subtotal: FieldSchema,
-    discount: FieldSchema,
-    shipping: FieldSchema,
-    tax: FieldSchema,
-    paid: FieldSchema,
-    balance: FieldSchema,
+    subtotal: WithoutValueSchema,
+    discount: WithoutValueSchema,
+    shipping: WithoutValueSchema,
+    tax: FieldNumberSchema,
+    paid: WithoutValueSchema,
+    balance: WithoutValueSchema,
 });
 
 export const validateInvoice = (invoice: InvoiceState) => {

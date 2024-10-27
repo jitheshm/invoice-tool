@@ -18,9 +18,41 @@ const splitTextToLines = (text: string, maxLength: number) => {
     return lines.join('\n');
 };
 
-export const generatePDF = (invoiceData: InvoiceData) => {
+export const generatePDF = async (invoiceData: InvoiceData) => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
+
+    let logo;
+
+    try {
+        logo = await fetch(invoiceData.logo, {
+            method: 'GET',
+            headers: { "Cache-Control": 'no-cache' },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch image: ${response.statusText}`);
+                }
+                return response.blob();
+            })
+            .then((blob) => {
+                return new Promise<string>((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result as string);
+                    reader.onerror = () => reject("Error converting image to Base64.");
+                    reader.readAsDataURL(blob);
+                });
+            });
+
+        const logoWidth = 20;
+        const logoHeight = 20;
+        doc.addImage(logo, 'JPEG', 10, 10, logoWidth, logoHeight);
+    } catch (error) {
+        console.error("Error adding logo:", error);
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "italic");
+        doc.text("Logo not available", 20, 20);
+    }
 
     // Header
     doc.setFontSize(30);

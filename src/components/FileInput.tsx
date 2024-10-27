@@ -1,7 +1,7 @@
 "use client"
 import { setImage } from '@/lib/features/invoice/invoiceSlice';
 import { RootState } from '@/lib/store';
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { FaFolderOpen } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,8 +13,13 @@ function FileInput() {
         error: false
 
     })
+    const [loading, setLoading] = useState(true);
     const { logo } = useSelector((state: RootState) => state.invoice);
     const dispatch = useDispatch()
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
 
     const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -72,19 +77,23 @@ function FileInput() {
             })
         }
     }
+
+
     return (
         <div>
             <div className='border border-[#dddddd] shadow-sm  w-5/6 mx-auto min-h-32 p-5 rounded-md '>
-                <label htmlFor='dropzone-file' className='border border-dashed border-[#aaaaaa] w-full min-h-20 max-h-44 flex justify-center hover:border-2 active:border-[#5acde2] active:border-solid'>
-                    <img src={logo.length > 0 ? logo : "/default.png"} alt="" />
-                    <input
-                        id={`dropzone-file`}
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="hidden"
-                    />
-                </label>
+                {
+                    !loading && <label htmlFor='dropzone-file' className='border border-dashed border-[#aaaaaa] w-full min-h-20 max-h-44 flex justify-center hover:border-2 active:border-[#5acde2] active:border-solid'>
+                        <img src={logo ? logo : "/default.png"} alt="" />
+                        <input
+                            id={`dropzone-file`}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden"
+                        />
+                    </label>
+                }
             </div>
             <div className='flex justify-center flex-col items-center mt-2'>
                 {
