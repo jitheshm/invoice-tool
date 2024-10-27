@@ -23,11 +23,12 @@ export async function POST(req: NextRequest) {
         const data = await req.json();
         data.userId = new Types.ObjectId(session.id)
         const validationErrors = validateServerInvoice(data);
-        if (Object.keys(validationErrors).length > 0) {
+        if (Object.keys(validationErrors.errors).length > 0) {
+            console.log(validationErrors)
             return NextResponse.json({ errors: validationErrors }, { status: 400 });
         }
 
-        const existInvoice = await Invoice.findOne({ invoiceId: data.invoiceId })
+        const existInvoice = await Invoice.findOne({ "invoiceId.value": data.invoiceId.value })
         if (existInvoice) {
             return NextResponse.json({ message: "Invoice id already exist" }, { status: 409 });
         }
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest) {
         const invoice = await new Invoice(data)
         await invoice.save()
 
-        NextResponse.json({ message: "Invoice save successfully" }, { status: 201 });
+        return NextResponse.json({ message: "Invoice save successfully" }, { status: 201 });
     } catch (error) {
         console.error("Error:", error);
         return NextResponse.json({ error: "Internal server error." }, { status: 500 });

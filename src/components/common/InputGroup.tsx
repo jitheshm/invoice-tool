@@ -29,6 +29,10 @@ function InputGroup({ children, type, fClassName, lClassName, fOnChange, lOnChan
         error && <div className="text-red-600 text-sm">{error.label as string | undefined ? error.label as string + ' &' : ''}  {error.value as string | undefined ?? ''}</div>
 
       }
+      {
+        error && <div className="text-red-600 text-sm">{error.invoiceObjError as string | undefined ?? ''}</div>
+
+      }
     </div>
   )
 }

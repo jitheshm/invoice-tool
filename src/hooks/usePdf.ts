@@ -1,13 +1,17 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
-import useTotal from './useTotal';
 import useSubtotal from './useSubtotal';
 import useBalance from './useBalance';
 import { generatePDF } from '@/lib/utils/generatePdf';
+import { useRouter } from 'next/navigation';
+import { logout } from '@/lib/features/user/userSlice';
+import { setErrors } from '@/lib/features/errors/errorSlice';
 
 
 
 const usePdf = () => {
+    const router = useRouter()
+    const dispatch = useDispatch()
     const invoice = useSelector((state: RootState) => state.invoice);
     const itemsWithAmount = invoice.items.map((ele) => {
         const quatity = typeof (ele.quantity) === 'number' ? ele.quantity : 0
@@ -47,8 +51,31 @@ const usePdf = () => {
 
 
     return {
-        generateAndDownloadPdf: () => {
-            generatePDF(newInvoice)
+        generateAndDownloadPdf: async () => {
+            try {
+                const res = await fetch('/api/invoice', {
+                    method: 'POST',
+                    body: JSON.stringify(newInvoice)
+                })
+                console.log(res.status)
+
+                if (res.status === 201) {
+                    return generatePDF(newInvoice)
+                }
+                if (res.status === 401) {
+                    dispatch(logout())
+                    router.push('/login')
+                    return
+                }
+                if (res.status === 409) {
+                    dispatch(setErrors( { invoiceId: { invoiceObjError: "Invoice id already exist" }  }))
+                }
+
+
+            } catch (error) {
+                console.log(error)
+            }
+
         }
     }
     // const total = useTotal()

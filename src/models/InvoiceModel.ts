@@ -35,5 +35,5 @@ const InvoiceSchema = new Schema<InvoiceWithUserId>({
     logo: { type: String, required: true }
 });
 
-const InvoiceModel = mongoose.model<InvoiceWithUserId>('Invoice', InvoiceSchema);
+const InvoiceModel = mongoose.models.Invoice ||mongoose.model<InvoiceWithUserId>('Invoice', InvoiceSchema);
 export default InvoiceModel;
