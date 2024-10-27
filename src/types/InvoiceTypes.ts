@@ -25,4 +25,5 @@ export interface InvoiceState {
     tax: Field;
     paid: Field;
     balance:Field
+    logo:string
 }

@@ -17,7 +17,8 @@ const initialState: InvoiceState = {
     shipping: { label: 'Shipping', value: '' },
     tax: { label: 'Tax', value: 0 },
     paid: { label: 'Paid', value: 0 },
-    balance:{label:'Balance Due'}
+    balance: { label: 'Balance Due' },
+    logo: ''
 };
 
 const invoiceSlice = createSlice({
@@ -26,8 +27,9 @@ const invoiceSlice = createSlice({
     reducers: {
         setInvoiceField: (state, action: PayloadAction<{ field: keyof InvoiceState; label?: string; value?: number | string }>) => {
             const { field, label, value } = action.payload;
-            if (state[field] && field != 'items') {
+            if (state[field] && field != 'items' && field != 'logo') {
                 if (label !== undefined) {
+
                     state[field].label = label;
                 }
                 if (value !== undefined) {
@@ -45,11 +47,14 @@ const invoiceSlice = createSlice({
         removeItem: (state, action: PayloadAction<number>) => {
             state.items.splice(action.payload, 1);
         },
+        setImage: (state, action: PayloadAction<string>) => {
+            state.logo = action.payload
+        },
 
         resetInvoice: () => initialState,
     },
 });
 
-export const { setInvoiceField, addItem, updateItem, removeItem, resetInvoice } = invoiceSlice.actions;
+export const { setInvoiceField, addItem, updateItem, removeItem, resetInvoice,setImage } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;
