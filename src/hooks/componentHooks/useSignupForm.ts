@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { validateFormData } from '@/lib/utils/validations/signupValidation';
 import { FormData, ValidationErrors } from '@/types/UserTypes';
+import { useRouter } from 'next/navigation'
 
 const useSignupForm = () => {
     const [formData, setFormData] = useState<FormData>({
@@ -10,6 +11,8 @@ const useSignupForm = () => {
         confirmPassword: '',
     });
     const [errors, setErrors] = useState<ValidationErrors>({});
+    const router = useRouter()
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -19,7 +22,7 @@ const useSignupForm = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const validationErrors = validateFormData(formData);
 
@@ -30,8 +33,32 @@ const useSignupForm = () => {
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
         } else {
-            console.log("Form submitted successfully:", formData);
             setErrors({});
+            try {
+                const result = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        password: formData.password,
+                    }),
+                })
+
+                const res = await result.json()
+                console.log(res)
+                if (res.status != 201) {
+                    setErrors({ form: res.message })
+
+                } else {
+                    router.push('/login')
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
         }
     };
 

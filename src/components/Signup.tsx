@@ -11,7 +11,10 @@ const SignupForm: React.FC = () => {
         <div className="flex items-center justify-center min-h-screen">
             <div className="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
                 <h2 className="text-2xl font-bold text-center mb-6">Create an Account</h2>
-                <form onSubmit={handleSubmit}>
+                {
+                    errors.form && <p className="text-red-500 text-sm text-center">{errors.form}</p>
+                }
+                <form onSubmit={handleSubmit} method="post">
                     <div className="mb-4">
                         <InputField
                             type="text"
