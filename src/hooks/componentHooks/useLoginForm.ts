@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { FormData, ValidationErrors } from '@/types/UserTypes';
 import { useRouter } from 'next/navigation'
 import { validateFormData } from '@/lib/utils/validations/loginValidation';
+import { useDispatch } from 'react-redux';
+import { login } from '@/lib/features/user/userSlice';
 
 const useLoginForm = () => {
     const [formData, setFormData] = useState<Partial<FormData>>({
@@ -10,6 +12,7 @@ const useLoginForm = () => {
     });
     const [errors, setErrors] = useState<ValidationErrors>({});
     const router = useRouter()
+    const dispatch = useDispatch()
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +48,8 @@ const useLoginForm = () => {
                     setErrors({ form: res.message })
 
                 } else {
+                    const res = await result.json()
+                    dispatch(login({ name: res.name, verified: true }))
                     router.push('/')
                 }
 

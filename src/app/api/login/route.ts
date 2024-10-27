@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
         if (existUser) {
             const status = await verifyPassword(formData.password, existUser.password)
             if (status) {
-                const token = generateToken({ id: existUser._id!, name: existUser.name })
+                const token = await generateToken({ id: existUser._id!, name: existUser.name })
 
                 cookieStore.set({
                     name: 'invoicetool',
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
                     path: '/',
                 })
 
-                return NextResponse.json({ message: "user login successfully" }, { status: 200 });
+                return NextResponse.json({ message: "user login successfully", name: existUser.name }, { status: 200 });
             } else {
                 return NextResponse.json({ message: "email or password is incorrect" }, { status: 401 });
             }

@@ -3,18 +3,26 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import invoiceReducer from "./features/invoice/invoiceSlice";
 import errorReducer from "./features/errors/errorSlice";
+import userReducer from "./features/user/userSlice";
 
-const persistConfig = {
-    key: "invoice", // Apply persistence only to the invoice state
+const invoicePersistConfig = {
+    key: "invoice",
     storage,
 };
 
-const persistedInvoiceReducer = persistReducer(persistConfig, invoiceReducer);
+const userPersistConfig = {
+    key: "user",
+    storage,
+};
+
+const persistedInvoiceReducer = persistReducer(invoicePersistConfig, invoiceReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 
 const store = configureStore({
     reducer: {
-        invoice: persistedInvoiceReducer, // Use persisted reducer for invoice
-        errors: errorReducer, // Plain reducer for errors (no persistence)
+        invoice: persistedInvoiceReducer,
+        errors: errorReducer,
+        user: persistedUserReducer,
     },
 });
 
