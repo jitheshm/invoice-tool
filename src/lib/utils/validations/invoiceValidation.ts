@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { InvoiceState } from '@/types/InvoiceTypes';
-import { IError } from '../features/errors/errorSlice';
+import { IError } from '../../features/errors/errorSlice';
 
 const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 

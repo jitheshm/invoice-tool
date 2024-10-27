@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import Button from './common/Button'
 import usePdf from '@/hooks/usePdf'
-import { validateInvoice } from '@/lib/utils/validation'
+import { validateInvoice } from '@/lib/utils/validations/invoiceValidation'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/lib/store'
 import { setErrors } from '@/lib/features/errors/errorSlice'
