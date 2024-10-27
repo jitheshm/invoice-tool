@@ -6,10 +6,11 @@ const FieldSchema = new Schema<Field>({
     value: { type: Schema.Types.Mixed }
 });
 
-const ItemSchema = new Schema<Item>({
+const ItemSchema = new Schema<Item & {amount:number}>({
     item: { type: String },
     quantity: { type: Number },
-    rate: { type: Number }
+    rate: { type: Number },
+    amount:{type:Number}
 });
 
 interface InvoiceWithUserId extends InvoiceState {

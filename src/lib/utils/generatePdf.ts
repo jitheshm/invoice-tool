@@ -6,7 +6,7 @@ interface FinalItem extends Item {
     amount: number;
 }
 
-interface InvoiceData extends InvoiceState {
+export interface InvoiceData extends InvoiceState {
     items: FinalItem[];
 }
 
