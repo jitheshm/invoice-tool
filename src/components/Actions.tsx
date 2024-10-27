@@ -6,6 +6,7 @@ import { validateInvoice } from '@/lib/utils/validations/invoiceValidation'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/lib/store'
 import { setErrors } from '@/lib/features/errors/errorSlice'
+import { resetInvoice } from '@/lib/features/invoice/invoiceSlice'
 
 function Actions() {
 
@@ -41,7 +42,7 @@ function Actions() {
                     className='text-xl px-2 p-2 w-fit rounded-md'
                     onClick={handleDownload}
                 />
-                <Button name='Clear' className='text-md px-3 p-2 w-fit !rounded-md !bg-[#F8F9FA] !text-black' />
+                <Button onClick={()=>dispatch(resetInvoice())} name='Clear' className='text-md px-3 p-2 w-fit !rounded-md !bg-[#F8F9FA] !text-black' />
             </div>
         </>
     )

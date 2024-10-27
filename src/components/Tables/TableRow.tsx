@@ -13,7 +13,7 @@ type PropTypes = {
 
 const TableRow = memo(({ index, ele, dispatch }: PropTypes) => {
     return (
-        <tr key={index} >
+        <tr key={index} className={`hover:bg-[#00000007] ${index%2===0?'bg-[#00000007]':''}`} >
             <td className="px-2 py-1 text-center flex gap-3 items-center">
                 {index + 1}
                 <button onClick={() => deleteItem(dispatch, index)} className='border border-[#dc3545] text-[#dc3545] px-1 py-2 rounded-md opacity-0 group-hover:opacity-100'>

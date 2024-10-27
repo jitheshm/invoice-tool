@@ -6,7 +6,7 @@ type ButtonProps = {
     icon?: React.ReactElement
     name?: string
     iconClass?: string
-    onClick: OnClick
+    onClick?: OnClick
 }
 function Button({ className = '', icon, name, iconClass = '', onClick }: ButtonProps) {
     return (
