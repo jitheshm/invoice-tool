@@ -48,7 +48,7 @@ function Navbar() {
             </header>
             <div
                 className={`w-full transform transition-transform duration-1000 ${isVisible ? 'translate-y-0' : '-translate-y-full hidden'
-                    }`}
+                    }  lg:hidden`}
             >
                 {
                     !userInfo.verified ? <div className='w-full'>
