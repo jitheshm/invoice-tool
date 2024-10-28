@@ -7,15 +7,24 @@ type ButtonProps = {
     name?: string
     iconClass?: string
     onClick?: OnClick
+    disabled?: boolean
 }
-function Button({ className = '', icon, name, iconClass = '', onClick }: ButtonProps) {
+function Button({ className = '', icon, name, iconClass = '', onClick, disabled = false }: ButtonProps) {
     return (
-        <button onClick={onClick} className={` bg-[#6450c2] text-white rounded-full flex justify-center items-center hover:bg-[#E9605A] ${className}`}>
+        <button
+            disabled={disabled}
+            onClick={onClick}
+            className={`text-white rounded-full flex justify-center items-center ${disabled
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-[#6450c2] hover:bg-[#E9605A]' 
+                } ${className}`}
+        >
             <span className={iconClass}>
                 {icon}
             </span>
             {name}
         </button>
+
     )
 }
 

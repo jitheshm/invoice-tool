@@ -38,6 +38,7 @@ function Actions() {
         <>
             <div className='flex flex-wrap w-1/2 mx-auto p-2 justify-center items-center gap-1'>
                 <Button
+                    disabled={invoiceData.logo.length>0?false:true}
                     name='Download PDF'
                     className='text-xl px-2 p-2 w-fit rounded-md'
                     onClick={handleDownload}

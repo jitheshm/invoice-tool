@@ -5,19 +5,19 @@ import { IError } from '../../features/errors/errorSlice';
 const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
 const FieldSchema = z.object({
-    label: z.string().nonempty('Label is required'),
-    value: z.string().nonempty('Value is required'),
+    label: z.string().trim().min(3, { message: "Min 3 characters required" }),
+    value: z.string().trim().min(3, { message: "Min 3 characters required" }),
 });
 
 const FieldNumberSchema = z.object({
-    label: z.string().nonempty('Label is required'),
+    label: z.string().trim().min(3, { message: "Min 3 characters required" }),
     value: z.number().nonnegative('Rate cannot be negative'),
 });
 
 
 
 const DateFieldSchema = z.object({
-    label: z.string().nonempty('Label is required'),
+    label: z.string().trim().min(3, { message: "Min 3 characters required" }),
     value: z
         .string()
         .nonempty('Date is required')
@@ -25,7 +25,7 @@ const DateFieldSchema = z.object({
 });
 
 const ItemSchema = z.object({
-    item: z.string().nonempty('Item name is required'),
+    item: z.string().trim().min(3, { message: "Min 3 characters required" }),
     quantity: z.number().positive('Quantity must be greater than zero'),
     rate: z.number().nonnegative('Rate cannot be negative'),
 });
