@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { dbConnection } from '@/config/db/dbConnect';
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ errors: validationErrors }, { status: 400 });
         }
 
-        const existInvoice = await Invoice.findOne({ "invoiceId.value": data.invoiceId.value })
+        const existInvoice = await Invoice.findOne({ "invoiceId.value": data.invoiceId.value, userId: data.userId })
         if (existInvoice) {
             return NextResponse.json({ message: "Invoice id already exist" }, { status: 409 });
         }
@@ -38,8 +39,11 @@ export async function POST(req: NextRequest) {
         await invoice.save()
 
         return NextResponse.json({ message: "Invoice save successfully" }, { status: 201 });
-    } catch (error) {
-        console.error("Error:", error);
+    } catch (error:any) {
+        if (error.name === 'JWTExpired') {
+            return NextResponse.json({ message: "unauthorized" }, { status: 401 });
+        }
+        console.error("Error:", error.name);
         return NextResponse.json({ error: "Internal server error." }, { status: 500 });
     }
 }
@@ -62,7 +66,10 @@ export async function GET(req: NextRequest) {
         const data = await Invoice.find({ userId: new Types.ObjectId(session.id) })
         return NextResponse.json({ message: "fetched successfully", data: data }, { status: 200 });
 
-    } catch (error) {
+    } catch (error:any) {
+        if (error.name === 'JWTExpired') {
+            return NextResponse.json({ message: "unauthorized" }, { status: 401 });
+        }
         console.error("Error:", error);
         return NextResponse.json({ error: "Internal server error." }, { status: 500 });
     }
