@@ -38,15 +38,15 @@ function Landing() {
                 </div>
 
                 <div className='flex justify-center items-center flex-col pt-20'>
-                    <p>Get help from our experts. Drop us a WhatsApp message now!!</p>
-                    <div className='mt-5'>
+                    <p className='w-4/6 text-center'>Get help from our experts. Drop us a WhatsApp message now!!</p>
+                    <div className='mt-5 hover:cursor-pointer'>
                         <MdArrowForwardIos />
                     </div>
                     <div className='mt-5 flex gap-3'>
-                        <div className='w-20 h-10 rounded-2xl border border-[#09a183] text-2xl flex justify-center items-center text-[#09a11d]'>
+                        <div className='w-20 h-10 rounded-2xl border border-[#09a183] text-2xl flex justify-center items-center text-[#09a11d] hover:cursor-pointer'>
                             <RiWhatsappFill />
                         </div>
-                        <div className='w-20 h-10 rounded-2xl border border-[#e9605a] text-2xl flex justify-center items-center '>
+                        <div className='w-20 h-10 rounded-2xl border border-[#e9605a] text-2xl flex justify-center items-center hover:cursor-pointer'>
                             <img src="https://www.finline.in/assets/v3/img/chat.png" className='w-10' alt="" />
                         </div>
                     </div>
@@ -54,7 +54,7 @@ function Landing() {
 
                 <div className='h-96 w-full px-5'>
                     <div className='relative '>
-                        <div className='bg-[#e9605a] min-h-96 top-9 w-full absolute rounded-2xl  pt-28 px-14'>
+                    <div className='bg-[#e9605a] bg-[url("https://www.finline.in/assets/v3/img/contact-us.png")] bg-right-bottom bg-no-repeat bg-contain min-h-96 top-9 w-full absolute rounded-2xl pt-20 px-3 md:px-14 bg-[length:30%_70%]'>
                             <div className='md:w-3/6 w-full'>
                                 <div className='bg-white p-2 rounded-xl w-full'>
                                     <input type="text" className='w-full' placeholder='Full Name' />
@@ -78,8 +78,8 @@ function Landing() {
                                         </div>
                                     </div>
                                     <div className='md:w-1/2 w-full p-2'>
-                                        <div className='bg-white p-2 rounded-xl w-full'>
-                                            <input type="text" className='w-full' />
+                                        <div className='bg-white p-2 rounded-xl w-full text-center hover:cursor-pointer'>
+                                            Submit
                                         </div>
                                     </div>
                                 </div>
