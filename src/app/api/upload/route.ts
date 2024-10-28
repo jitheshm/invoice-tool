@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
         const uploadParams = {
             Bucket: process.env.S3_BUCKET_NAME!,
-            Key: file.name, // Use the original file name or generate a unique name
+            Key: file.name, 
             Body: fileBuffer,
             ContentType: file.type,
             ACL: 'public-read',

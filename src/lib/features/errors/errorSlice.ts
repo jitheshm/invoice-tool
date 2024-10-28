@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// features/errors/errorSlice.ts
 export interface IError {
-    [key: string]: string | IError; // Allows string messages or nested error objects
+    [key: string]: string | IError; 
 }
 
 interface ErrorState {

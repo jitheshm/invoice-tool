@@ -57,14 +57,11 @@ export const validateInvoice = (invoice: InvoiceState) => {
         result.error.errors.forEach((error) => {
             let current = errors;
             error.path.forEach((segment, index) => {
-                // Convert array indices to strings to allow for dynamic object keys
                 const key = typeof segment === 'number' ? `[${segment}]` : segment;
 
                 if (index === error.path.length - 1) {
-                    // Assign the error message at the final path segment
                     current[key] = error.message;
                 } else {
-                    // Initialize nested objects if they don't exist
                     current[key] = current[key] || {};
                     current = current[key] as IError;
                 }
